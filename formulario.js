@@ -65,10 +65,14 @@ const validaapellido = apellido =>{
 
 }
 
+
 const validateInputs = () => {
     const apellidoValue = apellido.value.trim();
     const emailValue = email.value.trim();
     const nombreValue = nombre.value.trim();
+    let codigo = 1200 + (empleados.length +1);
+    const cargoValue = cargo.value;
+
     //validando nombre
     if(apellidoValue === '') {
         setError(apellido, 'Se requiere un apellido');
@@ -109,19 +113,18 @@ function addEmpleado(){
     const nombreValue = nombre.value.trim();
     const cargoValue = cargo.value;
     let codigo = 1200 + (empleados.length +1)
-    if(apellidoValue===''|| cargoValue ===''||emailValue===''||nombreValue===''){
-        alert("error")
-        
-    } else {
     
-            empleados.push(
-                {
-                    codigo:codigo, nombre: nombreValue, apellido: apellidoValue, correo: emailValue, cargo: cargoValue
-                }
-            )
-            alert("Registrado")
-            form.reset() 
-        
+    if(!validateInputs()){
+        alert ("error")
+
+    } else {
+        empleados.push(
+                        {
+                            codigo:codigo, nombre: nombreValue, apellido: apellidoValue, correo: emailValue, cargo: cargoValue
+                        }
+                    )
+                    alert("Registrado")
+                    form.reset() 
     }
-    console.log (empleados);
+    
 }
