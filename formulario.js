@@ -102,17 +102,26 @@ const validateInputs = () => {
 
 console.log(empleados)
 
+
 function addEmpleado(){
     const apellidoValue = apellido.value.trim();
     const emailValue = email.value.trim();
     const nombreValue = nombre.value.trim();
     const cargoValue = cargo.value;
     let codigo = 1200 + (empleados.length +1)
-    empleados.push(
-        {
-            codigo:codigo, nombre: nombreValue, apellido: apellidoValue, correo: emailValue, cargo: cargoValue
-        }
-    )
-    console.log (empleados)
-
+    if(apellidoValue===''|| cargoValue ===''||emailValue===''||nombreValue===''){
+        alert("error")
+        
+    } else {
+    
+            empleados.push(
+                {
+                    codigo:codigo, nombre: nombreValue, apellido: apellidoValue, correo: emailValue, cargo: cargoValue
+                }
+            )
+            alert("Registrado")
+            form.reset() 
+        
+    }
+    console.log (empleados);
 }
