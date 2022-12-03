@@ -1,19 +1,16 @@
-body {
-    background: linear-gradient(to right, #3900d4, #0450c2, #8700f5);
-}
 
 #form {
-    width: 600px;
-    margin: 15vh auto auto auto;
+    width: 900px;
+    margin: 5px auto auto auto;
     padding: 20px;
-    background-color: whitesmoke;
+    background-color: rgb(240, 240, 240);
     border-radius: 4px;
     font-size: 12px;
-    box-shadow: 8px 5px 5px black;
+    box-shadow: 5px 2px 2px rgb(121, 121, 121);
 }
 
-#h2 {
-    color: white;
+.integrantes {
+    font-size: 10px;
 }
 
 #form button {
@@ -40,7 +37,7 @@ body {
 	padding: 10px;
 	width: 100%;
 }
-
+/* Estilos de errores */
 .input-control input:focus {
     outline: 0;
 }
@@ -62,4 +59,50 @@ body {
     color: #ff3860;
     font-size: 10px;
     height: 13px;
+}
+
+/* Estilos de Integrantes */
+#menu * {
+    list-style: none;
+}
+
+#menu li {
+    line-height: 180%;
+}
+
+#menu li a {
+    color: #222;
+    text-decoration: none;
+}
+
+#menu li a:before {
+    content: "\025b8";
+    color: #ddd;
+    margin-right: 4px;
+}
+
+#menu input[name="list"] {
+    position: absolute;
+    left: -1000em;
+}
+
+#menu label:before {
+    content: "\025b8";
+    margin-right: 4px;
+}
+
+#menu input:checked~label:before {
+    content: "\025be";
+}
+
+#menu .interior {
+    display: none;
+}
+
+#menu input:checked~ul {
+    display: block;
+}
+
+#menu .nivel1-1{
+    font-size: 10px;
 }

@@ -1,15 +1,27 @@
+let empleados = [
+    {codido: 1200, nombre: "Andres", apellido: "Pacheco", correo: "apacheco@mtpecertus.com", cargo: "Jefe"},
+    {codigo: 1201, nombre: "Andrea", apellido: "Sanchez", correo: "asanchez@mtpecertus.com", cargo: "Analista"},
+    {codigo: 1202, nombre: "Julia", apellido: "Ochoa", correo: "jochoa@mtpecertus.com", cargo: "Asistente"},
+    {codigo: 1203, nombre: "Samuel", apellido: "Martinez", correo: "smartinez@mtpecertus.com", cargo: "Programador"},
+    {codigo: 1204, nombre: "Roberto", apellido: "Mattos", correo: "rmattos@mtpecertus.com", cargo: "Soporte"},
+    {codigo: 1205, nombre: "Mercedes", apellido: "Sanchez", correo: "msanchez@mtpecertus.com", cargo: "Asistente"},
+    ]
+
+
 const form = document.getElementById('form');
-const username = document.getElementById('usuario');
 const nombre = document.getElementById('nombre');
+const apellido = document.getElementById('apellido');
 const email = document.getElementById('correo');
-const celular = document.getElementById('celular');
-const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
+const cargo = document.getElementById('cargo');
+
+
 
 form.addEventListener('submit', e => {
     e.preventDefault();
 
     validateInputs();
+
+    addEmpleado();
 });
 
 const setError = (element, message) => {
@@ -42,39 +54,36 @@ const validarcorreo = email => {
     return re.test(String(email).toLowerCase());
 }
 
-const validarcelular = celular =>{
-    const te= /^9[0-9]{8}$/;
-    return te.test(celular)
-}
+const validanombre = nombre =>{
+    const no = /^[a-zA-Z]{2,14}$/
+    return no.test(String(nombre).toLowerCase());
 
-const validarUsername = username =>{
-    const us= /^[a-zA-Z0-9\_\-]{4,16}$/
-    return us.test(String(username).toLowerCase())
+}
+const validaapellido = apellido =>{
+    const ap = /^[a-zA-Z]{2,14}$/
+    return ap.test(String(apellido).toLowerCase());
+
 }
 
 const validateInputs = () => {
-    const usernameValue = username.value.trim();
+    const apellidoValue = apellido.value.trim();
     const emailValue = email.value.trim();
-    const passwordValue = password.value.trim();
-    const password2Value = password2.value.trim();
     const nombreValue = nombre.value.trim();
-    const celularValue = celular.value.trim();
-    //validando usuario
-    
-    if(usernameValue === '') {
-        setError(username, 'Se requiere un usuario');
-    } else if (!validarUsername(usernameValue)) {
-        setError(username, 'El usuario tiene que ser de 4 a 16 dígitos y solo puede contener números, letras y guión bajo')
+    //validando nombre
+    if(apellidoValue === '') {
+        setError(apellido, 'Se requiere un apellido');
+    } else if (!validaapellido(apellidoValue)) {
+        setError(apellido, 'El nombre tiene que ser de 2 a 14 caracteres (solo letras)')
     }
     else {
-        setSuccess(username, '¡Datos Correctos!');
+        setSuccess(apellido, '¡Datos Correctos!');
     }
 
-    //validando nombre
+    //validando apellido
     if(nombreValue === '') {
         setError(nombre, 'Se requiere nombre completo');
-    } else if (nombreValue.length > 30 ) {
-        setError(nombre, 'Ingrese un nombre válido')
+    } else if (!validanombre(nombreValue)) {
+        setError(nombre, 'El apellido tiene que ser de 2 a 14 caracteres (solo letras)')
     }
     else {
         setSuccess(nombre, '¡Datos Correctos!');
@@ -89,31 +98,21 @@ const validateInputs = () => {
         setSuccess(email,'¡Datos Correctos!');
     }
 
-    //validando celular
-    if(celularValue === '') {
-        setError(celular, 'Se requiere un número de celular');
-    } else if (!validarcelular(celularValue)) {
-        setError(celular, 'El número no es válido');
-    } else {
-        setSuccess(celular,'¡Datos Correctos!');
-    }
-
-    //validando contraseña
-    if(passwordValue === '') {
-        setError(password, 'Se requiere una contraseña');
-    } else if (passwordValue.length < 8 ) {
-        setError(password, 'La contraseña debe tener al menos 8 dígitos')
-    } else {
-        setSuccess(password,'¡Datos Correctos!');
-    }
-
-    //validando contraseña repetida
-    if(password2Value === '') {
-        setError(password2, 'Por favor confirme contraseña');
-    } else if (password2Value !== passwordValue) {
-        setError(password2, "Ambas contraseñas deben coincidir");
-    } else {
-        setSuccess(password2,'¡Datos Correctos!');
-    }
-
 };
+
+console.log(empleados)
+
+function addEmpleado(){
+    const apellidoValue = apellido.value.trim();
+    const emailValue = email.value.trim();
+    const nombreValue = nombre.value.trim();
+    const cargoValue = cargo.value;
+    let codigo = 1200 + (empleados.length +1)
+    empleados.push(
+        {
+            codigo:codigo, nombre: nombreValue, apellido: apellidoValue, correo: emailValue, cargo: cargoValue
+        }
+    )
+    console.log (empleados)
+
+}
