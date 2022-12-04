@@ -70,7 +70,6 @@ const validateInputs = () => {
     const apellidoValue = apellido.value.trim();
     const emailValue = email.value.trim();
     const nombreValue = nombre.value.trim();
-    let codigo = 1200 + (empleados.length +1);
     const cargoValue = cargo.value;
 
     //validando nombre
@@ -112,10 +111,10 @@ function addEmpleado(){
     const emailValue = email.value.trim();
     const nombreValue = nombre.value.trim();
     const cargoValue = cargo.value;
-    let codigo = 1200 + (empleados.length +1)
+    let codigo = 1200 + (empleados.length)
     
-    if(!validateInputs()){
-        alert ("error")
+    if(!validaapellido(apellidoValue)|| !validarcorreo(emailValue)||!validanombre(nombreValue)){
+        alert ("Se necesita datos completos")
 
     } else {
         empleados.push(
@@ -123,8 +122,9 @@ function addEmpleado(){
                             codigo:codigo, nombre: nombreValue, apellido: apellidoValue, correo: emailValue, cargo: cargoValue
                         }
                     )
-                    alert("Registrado")
-                    form.reset() 
+                    alert("Datos Registrados")
+                    form.reset()
+                    console.log(empleados) 
     }
     
 }
