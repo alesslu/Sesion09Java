@@ -87,7 +87,7 @@ let disableFields = function(){
     cargoEdit.setAttribute('disabled', true);
 }
 let enableFields = function(){
-    codigoEdit.removeAttribute('disabled');
+//     codigoEdit.removeAttribute('disabled');
     nombreEdit.removeAttribute('disabled');
     apellidoEdit.removeAttribute('disabled');
     correoEdit.removeAttribute('disabled');
