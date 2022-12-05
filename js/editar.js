@@ -92,7 +92,7 @@ let enableFields = function(){
     apellidoEdit.removeAttribute('disabled');
     correoEdit.removeAttribute('disabled');
     cargoEdit.removeAttribute('disabled');
-    codigoEdit.focus();
+    nombreEdit.focus();
     buttonEdit.style.display = 'none';
     buttonGuardarEdit.style.display = 'block';
 }
