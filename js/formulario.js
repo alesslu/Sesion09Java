@@ -170,6 +170,8 @@ function addEmpleado() {
         mensajeCorrecto.style.display = "block";
         var mensaje = document.getElementById("mensaje-alerta");
         mensaje.style.display = "none";
+        var mensajeCorrecto = document.getElementById("mensaje-correcto");
+        mensajeCorrecto.style.display = "none";
         
     }
     else {
