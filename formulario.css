@@ -116,6 +116,14 @@
 #mensaje-correcto{
     background-color: #0afc01c4 !important;
     display: none;
+    color: #000000;
+    padding: 5px;
+    font-size: 18px;
+}
+
+#mensaje-correo{
+    background-color: #fd8f00;
+    display: none;
     color: #f0f0f0;
     padding: 5px;
     font-size: 18px;
