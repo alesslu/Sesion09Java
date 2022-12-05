@@ -1,0 +1,63 @@
+body {
+  /* background: linear-gradient(to right, #3900d4, #0450c2, #8700f5); */
+}
+
+#form-edit {
+  width: 600px;
+  margin: 15vh auto auto auto;
+  padding: 20px;
+  background-color: whitesmoke;
+  border-radius: 4px;
+  font-size: 12px;
+  box-shadow: 8px 5px 5px black;
+}
+
+#h2 {
+  color: white;
+}
+
+#form-edit button {
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  color: white;
+  background-color: rgb(41, 57, 194);
+  border: none;
+  border-radius: 4px;
+  
+}
+
+.input-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-control input {
+  border: 2px solid #f0f0f0;
+border-radius: 4px;
+display: block;
+font-size: 12px;
+padding: 10px;
+width: 100%;
+}
+
+.input-control input:focus {
+  outline: 0;
+}
+
+.input-control .valido {
+  color: #09c372;
+  font-size: 10px;
+}
+.input-control.valido input {
+  border-color: #09c372;
+}
+
+.input-control.error input {
+  border-color: #ff3860;
+}
+
+.input-control .error {
+  color: #ff3860;
+  font-size: 10px;
+}
