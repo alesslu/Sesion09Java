@@ -1,10 +1,10 @@
 let empleados = [
-    { codigo: 1200, nombre: "Andres", apellido: "Pacheco", correo: "apacheco@mtpecertus.com", cargo: "Jefe", sueldo: 5000, sueldobruto: 4000},
-    { codigo: 1201, nombre: "Andrea", apellido: "Sanchez", correo: "asanchez@mtpecertus.com", cargo: "Analista", sueldo: 4000, sueldobruto: 3200},
-    { codigo: 1202, nombre: "Julia", apellido: "Ochoa", correo: "jochoa@mtpecertus.com", cargo: "Asistente", sueldo: 1500, sueldobruto: 1200},
-    { codigo: 1203, nombre: "Samuel", apellido: "Martinez", correo: "smartinez@mtpecertus.com", cargo: "Programador", sueldo: 3000, sueldobruto: 2400},
-    { codigo: 1204, nombre: "Roberto", apellido: "Mattos", correo: "rmattos@mtpecertus.com", cargo: "Soporte", sueldo: 2000, sueldobruto: 1600},
-    { codigo: 1205, nombre: "Mercedes", apellido: "Sanchez", correo: "msanchez@mtpecertus.com", cargo: "Asistente", sueldo: 1500, sueldobruto: 1200}
+    { codigo: 1200, nombre: "Andres", apellido: "Pacheco", correo: "apacheco@mtpecertus.com", cargo: "Jefe", sueldo: 5000, sueldobruto: 4000 },
+    { codigo: 1201, nombre: "Andrea", apellido: "Sanchez", correo: "asanchez@mtpecertus.com", cargo: "Analista", sueldo: 4000, sueldobruto: 3200 },
+    { codigo: 1202, nombre: "Julia", apellido: "Ochoa", correo: "jochoa@mtpecertus.com", cargo: "Asistente", sueldo: 1500, sueldobruto: 1200 },
+    { codigo: 1203, nombre: "Samuel", apellido: "Martinez", correo: "smartinez@mtpecertus.com", cargo: "Programador", sueldo: 3000, sueldobruto: 2400 },
+    { codigo: 1204, nombre: "Roberto", apellido: "Mattos", correo: "rmattos@mtpecertus.com", cargo: "Soporte", sueldo: 2000, sueldobruto: 1600 },
+    { codigo: 1205, nombre: "Mercedes", apellido: "Sanchez", correo: "msanchez@mtpecertus.com", cargo: "Asistente", sueldo: 1500, sueldobruto: 1200 }
 ]
 
 
@@ -126,43 +126,65 @@ function addEmpleado() {
         case 'Jefe':
             sueldo = 5000
             break
-        
-        case 'Analista': 
-            sueldo=4000
-            break 
-        
-        case 'Programador': 
-            sueldo=3000
-            break 
 
-        case 'Soporte': 
-            sueldo=2000
-            break 
+        case 'Analista':
+            sueldo = 4000
+            break
 
-        case 'Asistente': 
-            sueldo=1500
-            break 
+        case 'Programador':
+            sueldo = 3000
+            break
+
+        case 'Soporte':
+            sueldo = 2000
+            break
+
+        case 'Asistente':
+            sueldo = 1500
+            break
 
     }
 
-    let sueldoFormula = sueldo*0.8
+    let sueldoFormula = sueldo * 0.8
 
+    let arraycorreo = [];
+    for (var i = 0; i < empleados.length; i++) {
+        arraycorreo.push(empleados[i].correo)
+    }
+    const correonuevo = emailValue
 
+    function correoRepetido(query) {
+        return arraycorreo.filter(function(el) {
+            return el.toLowerCase().indexOf(query.toLowerCase()) > -1;
+        })
+      }
+    
     if (!validaapellido(apellidoValue) || !validarcorreo(emailValue) || !validanombre(nombreValue)) {
         var mensaje = document.getElementById("mensaje-alerta");
         mensaje.style.display = "block";
         var mensajeCorrecto = document.getElementById("mensaje-correcto");
         mensajeCorrecto.style.display = "none";
-        }
-        else {
+        var mensaje = document.getElementById("mensaje-correo");
+        mensaje.style.display = "none";
+    
+    } else if (correoRepetido(correonuevo).length===1){
+        var mensajeCorrecto = document.getElementById("mensaje-correo");
+        mensajeCorrecto.style.display = "block";
+        var mensaje = document.getElementById("mensaje-alerta");
+        mensaje.style.display = "none";
+        
+    }
+    else {
         empleados.push(
             {
-                codigo: codigo, nombre: nombreValue, apellido: apellidoValue, correo: emailValue, cargo: cargoValue , sueldo: sueldo, sueldobruto: sueldoFormula
+                codigo: codigo, nombre: nombreValue, apellido: apellidoValue, correo: emailValue, cargo: cargoValue, sueldo: sueldo, sueldobruto: sueldoFormula
             }
         )
         var mensajeCorrecto = document.getElementById("mensaje-correcto");
         mensajeCorrecto.style.display = "block";
         var mensaje = document.getElementById("mensaje-alerta");
+        mensaje.style.display = "none";
+        var mensaje = document.getElementById("mensaje-correo");
         mensaje.style.display = "none";
         form.reset()
         console.log(empleados)
