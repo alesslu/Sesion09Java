@@ -1,10 +1,10 @@
 let empleados = [
-    { codigo: 1200, nombre: "Andres", apellido: "Pacheco", correo: "apacheco@mtpecertus.com", cargo: "Jefe", sueldo_neto: "5000", sueldo_bruto: "4000", data_empleado: "link" },
-    { codigo: 1201, nombre: "Andrea", apellido: "Sanchez", correo: "asanchez@mtpecertus.com", cargo: "Analista", sueldo_neto: "4000", sueldo_bruto: "3200", data_empleado: "link" },
-    { codigo: 1202, nombre: "Julia", apellido: "Ochoa", correo: "jochoa@mtpecertus.com", cargo: "Asistente", sueldo_neto: "1500", sueldo_bruto: "1200", data_empleado: "link" },
-    { codigo: 1203, nombre: "Samuel", apellido: "Martinez", correo: "smartinez@mtpecertus.com", cargo: "Programador", sueldo_neto: "3000", sueldo_bruto: "2400", data_empleado: "link" },
-    { codigo: 1204, nombre: "Roberto", apellido: "Mattos", correo: "rmattos@mtpecertus.com", cargo: "Soporte", sueldo_neto: "2000", sueldo_bruto: "1600", data_empleado: "link" },
-    { codigo: 1205, nombre: "Mercedes", apellido: "Sanchez", correo: "msanchez@mtpecertus.com", cargo: "Asistente", sueldo_neto: "1500", sueldo_bruto: "1200", data_empleado: "link" },
+    { codigo: 1200, nombre: "Andres", apellido: "Pacheco", correo: "apacheco@mtpecertus.com", cargo: "Jefe", sueldo: 5000, sueldobruto: 4000},
+    { codigo: 1201, nombre: "Andrea", apellido: "Sanchez", correo: "asanchez@mtpecertus.com", cargo: "Analista", sueldo: 4000, sueldobruto: 3200},
+    { codigo: 1202, nombre: "Julia", apellido: "Ochoa", correo: "jochoa@mtpecertus.com", cargo: "Asistente", sueldo: 1500, sueldobruto: 1200},
+    { codigo: 1203, nombre: "Samuel", apellido: "Martinez", correo: "smartinez@mtpecertus.com", cargo: "Programador", sueldo: 3000, sueldobruto: 2400},
+    { codigo: 1204, nombre: "Roberto", apellido: "Mattos", correo: "rmattos@mtpecertus.com", cargo: "Soporte", sueldo: 2000, sueldobruto: 1600},
+    { codigo: 1205, nombre: "Mercedes", apellido: "Sanchez", correo: "msanchez@mtpecertus.com", cargo: "Asistente", sueldo: 1500, sueldobruto: 1200}
 ]
 
 
@@ -149,15 +149,21 @@ function addEmpleado() {
 
 
     if (!validaapellido(apellidoValue) || !validarcorreo(emailValue) || !validanombre(nombreValue)) {
-        alert("Se necesita datos completos")
-
-    } else {
+        var mensaje = document.getElementById("mensaje-alerta");
+        mensaje.style.display = "block";
+        var mensajeCorrecto = document.getElementById("mensaje-correcto");
+        mensajeCorrecto.style.display = "none";
+        }
+        else {
         empleados.push(
             {
                 codigo: codigo, nombre: nombreValue, apellido: apellidoValue, correo: emailValue, cargo: cargoValue , sueldo: sueldo, sueldobruto: sueldoFormula
             }
         )
-        alert("Datos Registrados")
+        var mensajeCorrecto = document.getElementById("mensaje-correcto");
+        mensajeCorrecto.style.display = "block";
+        var mensaje = document.getElementById("mensaje-alerta");
+        mensaje.style.display = "none";
         form.reset()
         console.log(empleados)
     }

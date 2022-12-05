@@ -1,8 +1,7 @@
-
 //Ordenar
 let arriba = 1
 function ordenar_empleado(valor) {
-      if (valor === "codigo") {
+      if (valor === "codigo" || valor ==="sueldobruto" || valor ==="sueldo") {
             empleados.sort((a, b) => a[valor] - b[valor])
         } else {
             empleados.sort((a, b) => a[valor].localeCompare(b[valor]))
@@ -11,7 +10,7 @@ function ordenar_empleado(valor) {
 }
 
 function reverse_ordenar_empleado(valor) {
-    if (valor === "codigo") {
+    if (valor === "codigo" || valor ==="sueldobruto" || valor ==="sueldo") {
         empleados.sort((a, b) => a[valor] - b[valor]).reverse()
     } else {
         empleados.sort((a, b) => a[valor].localeCompare(b[valor])).reverse()
@@ -22,7 +21,8 @@ function reverse_ordenar_empleado(valor) {
 
 function genera_tabla() {
 
-    const tablaEmpleados = document.getElementById("tabla-empleados")
+    const tablaEmpleados = document.getElementById("tabla")
+    tablaEmpleados.innerHTML = "";
     const tabla = document.createElement("table")
     tabla.setAttribute("border", "1")
     tablaEmpleados.append(tabla)
@@ -38,7 +38,8 @@ function genera_tabla() {
         taHe.addEventListener("click", () => {
             if (arriba === 1)
             {
-                taHe.style.backgroundImage = "url('arriba.png')";
+                taHe.classList.remove("orden_verde")
+                taHe.classList.add("orden_rojo")
                 ordenar_empleado(prop)
                 tabla.innerHTML = ""
                 tabla.append(taR)
@@ -46,7 +47,9 @@ function genera_tabla() {
             }
             else
             {
-                taHe.style.backgroundImage = "url('abajo.png')";
+                //taHe.style.backgroundImage = "url('abajo.png')";
+                taHe.classList.remove("orden_rojo")
+                taHe.classList.add("orden_verde")
                 reverse_ordenar_empleado(prop)
                 tabla.innerHTML = ""
                 tabla.append(taR)
@@ -72,4 +75,3 @@ function genera_tabla() {
     }
 
 }
-
