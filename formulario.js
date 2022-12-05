@@ -1,11 +1,12 @@
 let empleados = [
-    {codido: 1200, nombre: "Andres", apellido: "Pacheco", correo: "apacheco@mtpecertus.com", cargo: "Jefe"},
-    {codigo: 1201, nombre: "Andrea", apellido: "Sanchez", correo: "asanchez@mtpecertus.com", cargo: "Analista"},
-    {codigo: 1202, nombre: "Julia", apellido: "Ochoa", correo: "jochoa@mtpecertus.com", cargo: "Asistente"},
-    {codigo: 1203, nombre: "Samuel", apellido: "Martinez", correo: "smartinez@mtpecertus.com", cargo: "Programador"},
-    {codigo: 1204, nombre: "Roberto", apellido: "Mattos", correo: "rmattos@mtpecertus.com", cargo: "Soporte"},
-    {codigo: 1205, nombre: "Mercedes", apellido: "Sanchez", correo: "msanchez@mtpecertus.com", cargo: "Asistente"},
-    ]
+    { codigo: 1200, nombre: "Andres", apellido: "Pacheco", correo: "apacheco@mtpecertus.com", cargo: "Jefe", sueldo_neto: "5000", sueldo_bruto: "4000", data_empleado: "link" },
+    { codigo: 1201, nombre: "Andrea", apellido: "Sanchez", correo: "asanchez@mtpecertus.com", cargo: "Analista", sueldo_neto: "4000", sueldo_bruto: "3200", data_empleado: "link" },
+    { codigo: 1202, nombre: "Julia", apellido: "Ochoa", correo: "jochoa@mtpecertus.com", cargo: "Asistente", sueldo_neto: "1500", sueldo_bruto: "1200", data_empleado: "link" },
+    { codigo: 1203, nombre: "Samuel", apellido: "Martinez", correo: "smartinez@mtpecertus.com", cargo: "Programador", sueldo_neto: "3000", sueldo_bruto: "2400", data_empleado: "link" },
+    { codigo: 1204, nombre: "Roberto", apellido: "Mattos", correo: "rmattos@mtpecertus.com", cargo: "Soporte", sueldo_neto: "2000", sueldo_bruto: "1600", data_empleado: "link" },
+    { codigo: 1205, nombre: "Mercedes", apellido: "Sanchez", correo: "msanchez@mtpecertus.com", cargo: "Asistente", sueldo_neto: "1500", sueldo_bruto: "1200", data_empleado: "link" },
+]
+
 
 
 const form = document.getElementById('form');
@@ -36,7 +37,7 @@ const setError = (element, message) => {
     inputControl.classList.remove('valido')
 }
 
-const setSuccess = (element,message) => {
+const setSuccess = (element, message) => {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
     const validoDisplay = inputControl.querySelector('.valido');
@@ -46,7 +47,7 @@ const setSuccess = (element,message) => {
     validoDisplay.innerText = message;
     inputControl.classList.remove('error');
     inputControl.classList.add('valido');
-    
+
 };
 
 const validarcorreo = email => {
@@ -54,12 +55,12 @@ const validarcorreo = email => {
     return re.test(String(email).toLowerCase());
 }
 
-const validanombre = nombre =>{
+const validanombre = nombre => {
     const no = /^[a-zA-Z]{2,14}$/
     return no.test(String(nombre).toLowerCase());
 
 }
-const validaapellido = apellido =>{
+const validaapellido = apellido => {
     const ap = /^[a-zA-Z]{2,14}$/
     return ap.test(String(apellido).toLowerCase());
 
@@ -73,7 +74,7 @@ const validateInputs = () => {
     const cargoValue = cargo.value;
 
     //validando nombre
-    if(apellidoValue === '') {
+    if (apellidoValue === '') {
         setError(apellido, 'Se requiere un apellido');
     } else if (!validaapellido(apellidoValue)) {
         setError(apellido, 'El nombre tiene que ser de 2 a 14 caracteres (solo letras)')
@@ -83,7 +84,7 @@ const validateInputs = () => {
     }
 
     //validando apellido
-    if(nombreValue === '') {
+    if (nombreValue === '') {
         setError(nombre, 'Se requiere nombre completo');
     } else if (!validanombre(nombreValue)) {
         setError(nombre, 'El apellido tiene que ser de 2 a 14 caracteres (solo letras)')
@@ -93,12 +94,12 @@ const validateInputs = () => {
     }
 
     //validando correo
-    if(emailValue === '') {
+    if (emailValue === '') {
         setError(email, 'Se requiere un correo');
     } else if (!validarcorreo(emailValue)) {
         setError(email, 'El correo debe ser uno válido');
     } else {
-        setSuccess(email,'¡Datos Correctos!');
+        setSuccess(email, '¡Datos Correctos!');
     }
 
 };
@@ -106,25 +107,59 @@ const validateInputs = () => {
 console.log(empleados)
 
 
-function addEmpleado(){
+function addEmpleado() {
     const apellidoValue = apellido.value.trim();
     const emailValue = email.value.trim();
     const nombreValue = nombre.value.trim();
     const cargoValue = cargo.value;
     let codigo = 1200 + (empleados.length)
-    
-    if(!validaapellido(apellidoValue)|| !validarcorreo(emailValue)||!validanombre(nombreValue)){
-        alert ("Se necesita datos completos")
+    // let sueldos =[
+    //     jefe = 5000 ,
+    //     analista = 4000,
+    //     programador = 3000,
+    //     soporte = 2000,
+    //     asistente = 1500,
+    // ]
+
+    const opciones = cargoValue
+    switch (opciones) {
+        case 'Jefe':
+            sueldo = 5000
+            break
+        
+        case 'Analista': 
+            sueldo=4000
+            break 
+        
+        case 'Programador': 
+            sueldo=3000
+            break 
+
+        case 'Soporte': 
+            sueldo=2000
+            break 
+
+        case 'Asistente': 
+            sueldo=1500
+            break 
+
+    }
+
+    let sueldoFormula = sueldo*0.8
+
+
+    if (!validaapellido(apellidoValue) || !validarcorreo(emailValue) || !validanombre(nombreValue)) {
+        alert("Se necesita datos completos")
 
     } else {
         empleados.push(
-                        {
-                            codigo:codigo, nombre: nombreValue, apellido: apellidoValue, correo: emailValue, cargo: cargoValue
-                        }
-                    )
-                    alert("Datos Registrados")
-                    form.reset()
-                    console.log(empleados) 
+            {
+                codigo: codigo, nombre: nombreValue, apellido: apellidoValue, correo: emailValue, cargo: cargoValue , sueldo: sueldo, sueldobruto: sueldoFormula
+            }
+        )
+        alert("Datos Registrados")
+        form.reset()
+        console.log(empleados)
     }
-    
+
 }
